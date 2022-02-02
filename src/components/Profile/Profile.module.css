@@ -1,0 +1,36 @@
+.profile {
+    grid-area: containt;
+    display: grid;
+    grid-template-areas: "img aboutUser"
+                          "friends posts";
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 20px;
+}
+
+.img {
+    max-height: 200px;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+}
+.aboutUser {
+    min-height: 200px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+}
+.userFriends {
+    min-height: 200px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+}
+.avatarFriend {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding: 5px;
+}
+.userPosts {
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    min-height: 200px;
+}
