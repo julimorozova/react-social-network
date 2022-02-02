@@ -1,4 +1,5 @@
 import classes from './Profile.module.css'
+import {MyPosts} from "./MyPosts/MyPosts";
 
 export const Profile = () => {
     return (
@@ -26,10 +27,7 @@ export const Profile = () => {
                 </div>
 
             </div>
-            <div className={classes.userPosts}>
-                <textarea/>
-                <button>Add post</button>
-            </div>
+            <MyPosts />
         </div>
     )
 }
