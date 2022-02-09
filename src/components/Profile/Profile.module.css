@@ -1,5 +1,4 @@
 .profile {
-    grid-area: containt;
     display: grid;
     grid-template-areas: "img aboutUser"
                           "friends posts";

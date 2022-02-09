@@ -1,0 +1,28 @@
+.dialogs {
+    grid-area: containt;
+    display: grid;
+    grid-template-areas: "dialogs messages";
+    grid-template-columns: 2fr 10fr;
+    grid-gap: 20px;
+    border-radius: 5px;
+
+}
+.dialogs_items {
+    grid-area: dialogs;
+    background-color: #f2f2f2;
+}
+.dialog{
+    padding: 20px;
+    color: #0e0e0e;
+}
+.dialog:hover {
+    background-color: white;
+}
+.messages {
+    grid-area: messages;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+.message {
+
+}
