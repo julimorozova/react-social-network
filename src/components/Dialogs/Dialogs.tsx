@@ -44,13 +44,14 @@ export const Dialogs = () => {
     ]
 
     type MessageDataType = {
+        id: string
         message: string
     }
     let messagesData: Array<MessageDataType> = [
-        {message: "Hello!"},
-        {message: "How are you?"},
-        {message: "I'm fine!"},
-        {message: "Hello!"},
+        {id: "1", message: "Hello!"},
+        {id: "2", message: "How are you?"},
+        {id: "3", message: "I'm fine!"},
+        {id: "4", message: "Hello!"},
     ]
     const dialogsElements = dialogsData.map(dialog => <Dialog name={dialog.name} id={dialog.id}/>)
     const messagesElements = messagesData.map(message =>  <Message message={message.message}/>)
