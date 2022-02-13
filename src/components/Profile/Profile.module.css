@@ -16,11 +16,14 @@
     min-height: 200px;
     background-color: #f2f2f2;
     border-radius: 5px;
+    padding: 20px;
+    margin: 0;
 }
 .userFriends {
     min-height: 200px;
     background-color: #f2f2f2;
     border-radius: 5px;
+    padding: 20px;
 }
 .avatarFriend {
     width: 50px;

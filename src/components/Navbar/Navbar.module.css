@@ -1,9 +1,14 @@
+body {
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+}
+
 .nav {
     grid-area: nav;
     background-color: #f2f2f2;
     border-radius: 5px;
-    height: 80vh;
-
 }
 
 .item {
