@@ -1,4 +1,4 @@
-import classes from './Music.module.css'
+import classes from './Music.module.css';
 
 export const Music = () => {
   return (
@@ -6,5 +6,5 @@ export const Music = () => {
           Music
       </div>
 
-  )
-}
+  );
+};

@@ -1,5 +1,5 @@
-import { NavLink } from 'react-router-dom'
-import classes from './Navbar.module.css'
+import { NavLink } from 'react-router-dom';
+import classes from './Navbar.module.css';
 
 export const Navbar = () => {
     const setActive = ({isActive}: any) => isActive ? `${classes.link} ${classes.active}` : classes.link;
@@ -19,5 +19,5 @@ export const Navbar = () => {
           </div>
       </div>
 
-  )
-}
+  );
+};

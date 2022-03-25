@@ -1,4 +1,4 @@
-import classes from './Settings.module.css'
+import classes from './Settings.module.css';
 
 export const Settings = () => {
   return (
@@ -6,5 +6,5 @@ export const Settings = () => {
           Settings
       </div>
 
-  )
-}
+  );
+};

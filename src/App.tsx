@@ -8,16 +8,17 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { News } from "./components/News/News";
 import { Music } from "./components/Music/Music";
 import { Settings } from "./components/Settings/Settings";
+import {store} from "./redux/store";
 
 function App() {
     return (
         <BrowserRouter>
+            <Header/>
             <div className="app-wrapper">
-                <Header/>
                 <Navbar/>
                 <Routes>
-                    <Route path='/profile' element={<Profile/>}/>
-                    <Route path='/dialogs/*' element={<Dialogs/>}/>
+                    <Route path='/profile' element={<Profile profilePage={store._state.profilePage}/>}/>
+                    <Route path='/dialogs/*' element={<Dialogs dialogsPage={store._state.dialogsPage}/>}/>
                     <Route path='/news' element={<News/>}/>
                     <Route path='/music' element={<Music/>}/>
                     <Route path='/settings' element={<Settings/>}/>

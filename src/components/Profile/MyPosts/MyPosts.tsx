@@ -1,19 +1,16 @@
-import classes from './MyPosts.module.css'
+import classes from './MyPosts.module.css';
 import { Post } from "./Post/Post";
+import {PostsDataType} from "../../../redux/store";
+import React from "react";
 
-export const MyPosts = () => {
-    type PostsDataType = {
-        id: string
-        message: string
-        likeCount: number
-    }
-    let postsData: Array<PostsDataType> = [
-        {id: "1", message: "Hi!", likeCount: 1},
-        {id: "2", message: "How are you?", likeCount: 45},
-        {id: "3", message: "I want to know React very well. After that I will get very interesting job!", likeCount: 21},
-    ]
+type MyPostsPropsType = {
+    newPostText: string
+    postsData: Array<PostsDataType>
+};
 
-    const postsElements = postsData.map(post => <Post message={post.message} likeCount={post.likeCount} />)
+export const MyPosts: React.FC<MyPostsPropsType> = ({newPostText, postsData}) => {
+
+    const postsElements = postsData.map(post => <Post message={post.message} likeCount={post.likesCount} />);
     return (
         <div className={classes.userPosts}>
             <h3>My Posts</h3>
@@ -23,5 +20,5 @@ export const MyPosts = () => {
                 { postsElements }
             </div>
         </div>
-    )
-}
+    );
+};

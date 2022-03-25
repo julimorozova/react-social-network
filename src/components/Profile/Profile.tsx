@@ -1,7 +1,16 @@
-import classes from './Profile.module.css'
+import classes from './Profile.module.css';
 import { MyPosts } from "./MyPosts/MyPosts";
+import {ProfilePageType} from "../../redux/store";
+import React from "react";
 
-export const Profile = () => {
+type ProfilePagePropsType = {
+    profilePage: ProfilePageType
+};
+
+
+
+
+export const Profile: React.FC<ProfilePagePropsType> = ({profilePage}) => {
     return (
         <div className={classes.profile}>
 
@@ -25,9 +34,12 @@ export const Profile = () => {
                          src="https://avatars.mds.yandex.net/i?id=e708784c502029fd3580605e76109216_l-5761336-images-thumbs&n=27&h=384&w=480"
                          alt=""/>
                 </div>
-
             </div>
-            <MyPosts />
+
+            <MyPosts
+                newPostText={profilePage.newPostText}
+                postsData={profilePage.postsData}
+            />
         </div>
-    )
-}
+    );
+};

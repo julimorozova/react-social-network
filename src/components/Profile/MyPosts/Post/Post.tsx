@@ -1,9 +1,9 @@
-import classes from './Post.module.css'
+import classes from './Post.module.css';
 import React from "react";
 type PostType = {
     message: string
     likeCount: number
-}
+};
 export const Post: React.FC<PostType> = ({
     message,
     likeCount
@@ -19,5 +19,5 @@ export const Post: React.FC<PostType> = ({
         </div>
         <div className={classes.like}><span>{likeCount} like</span></div>
         </>
-    )
-}
+    );
+};

@@ -1,4 +1,4 @@
-import classes from './News.module.css'
+import classes from './News.module.css';
 
 export const News = () => {
   return (
@@ -6,5 +6,5 @@ export const News = () => {
           News
       </div>
 
-  )
-}
+  );
+};

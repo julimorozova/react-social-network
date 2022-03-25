@@ -2,32 +2,17 @@ import classes from "./Dialogs.module.css";
 import React from "react";
 import { Message } from "./Message/Message";
 import { Dialog } from "./Dialog/Dialog";
+import {DialogsPageType} from "../../redux/store";
 
-export const Dialogs = () => {
-    type DialogDataType = {
-        id: string
-        name: string
-    }
-    let dialogsData: Array<DialogDataType> = [
-        {id: "1", name: "Ivan"},
-        {id: "2", name: "Anna"},
-        {id: "3", name: "Andrew"},
-        {id: "4", name: "Olga"},
-    ]
+type DialogsPropsType = {
+    dialogsPage: DialogsPageType
+};
 
-    type MessageDataType = {
-        id: string
-        message: string
-    }
-    let messagesData: Array<MessageDataType> = [
-        {id: "1", message: "Hello!"},
-        {id: "2", message: "How are you?"},
-        {id: "3", message: "I'm fine!"},
-        {id: "4", message: "Hello!"},
-    ]
-    const dialogsElements = dialogsData.map(dialog => <Dialog name={dialog.name} id={dialog.id}/>)
-    const messagesElements = messagesData.map(message =>  <Message message={message.message}/>)
-    console.log(dialogsElements)
+export const Dialogs: React.FC<DialogsPropsType> = ({dialogsPage}) => {
+
+    const dialogsElements = dialogsPage.dialogsData.map(dialog => <Dialog key={dialog.id} name={dialog.name} id={dialog.id}/>);
+    const messagesElements = dialogsPage.messagesData.map(message =>  <Message key={message.id} message={message.message}/>);
+
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogs_items}>
@@ -38,5 +23,5 @@ export const Dialogs = () => {
                 { messagesElements }
             </div>
         </div>
-    )
-}
+    );
+};
