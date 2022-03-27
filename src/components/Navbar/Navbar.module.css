@@ -8,13 +8,15 @@ body {
 
 .nav {
 	border-radius: 5px;
-	background-color:#fcfaff;
+	background-color: #FCFAFF;
 	grid-area: nav;
 }
 
-/*.item {*/
-/*	border: 1px solid #F2F2F2;*/
-/*}*/
+/* .item { */
+
+/*	border: 1px solid #F2F2F2; */
+
+/* } */
 
 .item:hover {
 	background-color: #FFF;

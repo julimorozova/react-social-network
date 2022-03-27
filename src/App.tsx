@@ -8,17 +8,32 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { News } from "./components/News/News";
 import { Music } from "./components/Music/Music";
 import { Settings } from "./components/Settings/Settings";
-import {store} from "./redux/store";
+import {ActionType, StateType} from "./redux/store";
 
-function App() {
+type AppPropsType = {
+    state: StateType
+    dispatch: (action: ActionType) => void
+};
+
+const App: React.FC<AppPropsType> = ({state, dispatch}) => {
     return (
         <BrowserRouter>
             <Header/>
             <div className="app-wrapper">
                 <Navbar/>
                 <Routes>
-                    <Route path='/profile' element={<Profile profilePage={store._state.profilePage}/>}/>
-                    <Route path='/dialogs/*' element={<Dialogs dialogsPage={store._state.dialogsPage}/>}/>
+                    <Route path='/profile'
+                           element={<Profile
+                               profilePage={state.profilePage}
+                               dispatch={dispatch}
+                           />}
+                    />
+                    <Route path='/dialogs/*'
+                           element={<Dialogs
+                               dialogsPage={state.dialogsPage}
+                               dispatch={dispatch}
+                           />}
+                    />
                     <Route path='/news' element={<News/>}/>
                     <Route path='/music' element={<Music/>}/>
                     <Route path='/settings' element={<Settings/>}/>
@@ -26,6 +41,6 @@ function App() {
             </div>
         </BrowserRouter>
     );
-}
+};
 
 export default App;

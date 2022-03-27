@@ -1,4 +1,4 @@
-import React from "react";
+import React, {RefObject} from "react";
 import classes from "./Message.module.css";
 
 type MessagePropsType = {
@@ -6,8 +6,10 @@ type MessagePropsType = {
 };
 export const Message: React.FC<MessagePropsType> = ({message}) => {
     return (
-        <div className={classes.message}>
-            { message }
-        </div>
+        <>
+            <div className={classes.message}>
+                { message }
+            </div>
+        </>
     );
 };

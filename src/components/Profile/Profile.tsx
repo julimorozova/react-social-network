@@ -1,16 +1,14 @@
 import classes from './Profile.module.css';
-import { MyPosts } from "./MyPosts/MyPosts";
-import {ProfilePageType} from "../../redux/store";
+import {ActionType, ProfilePageType} from "../../redux/store";
 import React from "react";
+import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 type ProfilePagePropsType = {
     profilePage: ProfilePageType
+    dispatch: (action: ActionType) => void
 };
 
-
-
-
-export const Profile: React.FC<ProfilePagePropsType> = ({profilePage}) => {
+export const Profile: React.FC<ProfilePagePropsType> = ({profilePage, dispatch}) => {
     return (
         <div className={classes.profile}>
 
@@ -36,9 +34,10 @@ export const Profile: React.FC<ProfilePagePropsType> = ({profilePage}) => {
                 </div>
             </div>
 
-            <MyPosts
+            <MyPostsContainer
                 newPostText={profilePage.newPostText}
                 postsData={profilePage.postsData}
+                dispatch={dispatch}
             />
         </div>
     );
