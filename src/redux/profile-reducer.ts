@@ -1,7 +1,19 @@
-import {ActionType, AddPostAT, PostsDataType, ProfilePageType, UpdateNewPostTextAT} from "./store";
+import {ActionType, AddPostAT, UpdateNewPostTextAT} from "./store";
+import {v1} from "uuid";
+
+type ProfilePageType = {
+    newPostText: string
+    postsData: Array<PostsDataType>
+};
+type PostsDataType = {
+    id: string
+    message: string
+    likesCount: number
+};
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+
 
 const initialState: ProfilePageType = {
     newPostText: 'Hi!',
@@ -12,21 +24,26 @@ const initialState: ProfilePageType = {
     ],
 };
 
-export const profileReducer = (state: ProfilePageType = initialState, action: ActionType) => {
+export const profileReducer = (state: ProfilePageType = initialState, action: ActionType): ProfilePageType => {
+    let copyState;
+
     switch (action.type) {
         case(ADD_POST): {
+            copyState = {...state, postsData: [...state.postsData]}
             const newPost: PostsDataType = {
-                id: "4",
-                message: state.newPostText,
+                id: v1(),
+                message: copyState.newPostText,
                 likesCount: 0
             };
-            state.postsData.push(newPost);
-            state.newPostText = '';
-            return state;
+            copyState.postsData.push(newPost);
+            copyState.newPostText = '';
+            return copyState;
         }
-        case(UPDATE_NEW_POST_TEXT):
-            state.newPostText = action.newPostText;
-            return state;
+        case(UPDATE_NEW_POST_TEXT): {
+            copyState = {...state}
+            copyState.newPostText = action.newPostText;
+            return copyState;
+        }
         default:
             return state;
     }

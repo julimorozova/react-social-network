@@ -1,37 +1,32 @@
-import classes from './MyPosts.module.css';
-import { Post } from "./Post/Post";
 import {
-    ActionType,
-    PostsDataType,
+   ProfilePageType
 } from "../../../redux/store";
-import React, {ChangeEvent} from "react";
+import React from "react";
 import {AddPostAC, UpdatePostTextAC} from "../../../redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
-
-type MyPostsContainerPropsType = {
-    newPostText: string
-    postsData: Array<PostsDataType>
-    dispatch: (action: ActionType) => void
-};
+import {connect} from "react-redux";
+import {AppStateType} from "../../../redux/redux-store";
+import { Dispatch } from "redux";
 
 
-export const MyPostsContainer: React.FC<MyPostsContainerPropsType> = ({newPostText, postsData, dispatch}) => {
+type MapStateToPropsType = {
+    profilePage: ProfilePageType
+}
+type MapDispatchToPropsType = {
+    addNewPost: () => void
+    updateNewPostText: (text: string) => void
+}
+export type MyPostType = MapStateToPropsType & MapDispatchToPropsType
 
-    const updateNewPostText = (text: string) => {
-        dispatch(UpdatePostTextAC(text));
-
-    };
-    const addNewPost = () => {
-        dispatch(AddPostAC());
-    };
-    const postsElements = postsData.map(post => <Post message={post.message} likeCount={post.likesCount} />);
-    return (
-        <MyPosts
-            newPostText={newPostText}
-            postsData={postsData}
-            updateNewPostText={updateNewPostText}
-            addNewPost={addNewPost}
-
-        />
-    );
-};
+const mapStateToProps = (state: AppStateType): MapStateToPropsType  => {
+    return {
+        profilePage: state.profilePage
+    }
+}
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+    return {
+        addNewPost: () => { dispatch(AddPostAC());},
+        updateNewPostText: (text: string) => { dispatch(UpdatePostTextAC(text)) }
+    }
+}
+export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);

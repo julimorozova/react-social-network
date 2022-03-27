@@ -1,14 +1,24 @@
 import {
     ActionType,
     AddMessageAT,
-    DialogsPageType,
     MessageDataType,
     UpdateNewMessageTextAT
 } from "./store";
+import {v1} from "uuid";
+
 
 const ADD_MESSAGE = "ADD-MESSAGE";
 const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
 
+export type DialogsPageType = {
+    dialogsData: Array<DialogDataType>
+    newMessageText: string
+    messagesData: Array<MessageDataType>
+};
+export type DialogDataType = {
+    id: string
+    name: string
+};
 const initialState: DialogsPageType = {
     dialogsData: [
         {id: "1", name: 'Andrey'},
@@ -23,20 +33,24 @@ const initialState: DialogsPageType = {
     ]
 };
 
-export const dialogReducer = (state: DialogsPageType = initialState, action: ActionType) => {
+export const dialogReducer = (state: DialogsPageType = initialState, action: ActionType): DialogsPageType => {
+    let copyState;
     switch (action.type) {
         case(ADD_MESSAGE): {
+            copyState = {...state, messagesData: [...state.messagesData]}
             const newMessage: MessageDataType = {
-                id: "4",
-                message: state.newMessageText
+                id: v1(),
+                message: copyState.newMessageText
             };
-            state.messagesData.push(newMessage);
-            state.newMessageText = '';
-            return state;
+            copyState.messagesData.push(newMessage);
+            copyState.newMessageText = '';
+            return copyState;
         }
-        case(UPDATE_NEW_MESSAGE_TEXT):
-            state.newMessageText = action.newMessageText;
-            return state;
+        case(UPDATE_NEW_MESSAGE_TEXT): {
+            copyState = {...state}
+            copyState.newMessageText = action.newMessageText;
+            return copyState;
+        }
         default:
             return state;
     }

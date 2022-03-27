@@ -34,11 +34,7 @@ export const Profile: React.FC<ProfilePagePropsType> = ({profilePage, dispatch})
                 </div>
             </div>
 
-            <MyPostsContainer
-                newPostText={profilePage.newPostText}
-                postsData={profilePage.postsData}
-                dispatch={dispatch}
-            />
+            <MyPostsContainer/>
         </div>
     );
 };

@@ -1,20 +1,12 @@
 import classes from './MyPosts.module.css';
 import { Post } from "./Post/Post";
-import {
-    ActionType,
-    PostsDataType,
-} from "../../../redux/store";
 import React, {ChangeEvent} from "react";
-import {AddPostAC, UpdatePostTextAC} from "../../../redux/profile-reducer";
+import {MyPostType} from "./MyPostsContainer";
 
-type MyPostsPropsType = {
-    newPostText: string
-    postsData: Array<PostsDataType>
-    updateNewPostText: (text: string) => void
-    addNewPost: () => void
-};
 
-export const MyPosts: React.FC<MyPostsPropsType> = ({newPostText, postsData, updateNewPostText, addNewPost}) => {
+
+
+export const MyPosts: React.FC<MyPostType> = ({profilePage, updateNewPostText, addNewPost}) => {
 
     const updatePostText = (e: ChangeEvent<HTMLTextAreaElement>) => {
         updateNewPostText(e.currentTarget.value);
@@ -23,12 +15,12 @@ export const MyPosts: React.FC<MyPostsPropsType> = ({newPostText, postsData, upd
     const addPost = () => {
         addNewPost();
     };
-    const postsElements = postsData.map(post => <Post message={post.message} likeCount={post.likesCount} />);
+    const postsElements = profilePage.postsData.map(post => <Post key={post.id} message={post.message} likeCount={post.likesCount} />);
     return (
         <div className={classes.userPosts}>
             <h3>My Posts</h3>
             <textarea
-                value={newPostText}
+                value={profilePage.newPostText}
                 onChange={(e) => updatePostText(e)}
             />
             <button onClick={addPost}>Add post</button>
