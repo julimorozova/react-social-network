@@ -1,0 +1,61 @@
+.selected {
+	color: #FFF;
+	background: #442D47;
+
+	font-weight: bold;
+}
+
+.img {
+	max-height: 200px;
+	padding: 20px;
+
+	border-radius: 5px;
+	background-color: #FFF;
+}
+
+.avatarFriend {
+	width: 150px;
+	height: 150px;
+	padding: 5px;
+}
+
+.users {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.user {
+	overflow: hidden;
+
+	box-sizing: border-box;
+	width: 200px;
+	min-height: 200px;
+	margin-top: 10px;
+	margin-right: 10px;
+	padding: 20px;
+
+	word-break: break-all;
+
+	box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+}
+
+.name {
+	font-weight: bold;
+}
+
+.pagination {
+	display: inline-block;
+
+	min-width: 20px;
+	height: 20px;
+	margin: 5px;
+	padding: 5px;
+
+	text-align: center;
+
+	box-shadow: 0 0 2px rgb(0 0 0 / 50%);
+}
+
+.notSelected {
+	background: #F2F2F2;
+}

@@ -29,7 +29,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
 
     switch (action.type) {
         case(ADD_POST): {
-            copyState = {...state, postsData: [...state.postsData]}
+            copyState = {...state, postsData: [...state.postsData]};
             const newPost: PostsDataType = {
                 id: v1(),
                 message: copyState.newPostText,
@@ -40,7 +40,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             return copyState;
         }
         case(UPDATE_NEW_POST_TEXT): {
-            copyState = {...state}
+            copyState = {...state};
             copyState.newPostText = action.newPostText;
             return copyState;
         }

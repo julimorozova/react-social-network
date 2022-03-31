@@ -15,7 +15,7 @@ export const Dialogs: React.FC<DialogsPropsType> = ({dialogsPage, addNewMessage,
         addNewMessage();
     };
     const updateMessageText = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        updateNewMessageText(e.currentTarget.value)
+        updateNewMessageText(e.currentTarget.value);
     };
 
     return (

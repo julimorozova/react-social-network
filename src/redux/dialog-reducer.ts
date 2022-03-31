@@ -37,7 +37,7 @@ export const dialogReducer = (state: DialogsPageType = initialState, action: Act
     let copyState;
     switch (action.type) {
         case(ADD_MESSAGE): {
-            copyState = {...state, messagesData: [...state.messagesData]}
+            copyState = {...state, messagesData: [...state.messagesData]};
             const newMessage: MessageDataType = {
                 id: v1(),
                 message: copyState.newMessageText
@@ -47,7 +47,7 @@ export const dialogReducer = (state: DialogsPageType = initialState, action: Act
             return copyState;
         }
         case(UPDATE_NEW_MESSAGE_TEXT): {
-            copyState = {...state}
+            copyState = {...state};
             copyState.newMessageText = action.newMessageText;
             return copyState;
         }

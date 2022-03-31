@@ -10,24 +10,24 @@ import {Dispatch} from "redux";
 
 type MapStateToPropsType = {
     dialogsPage: DialogsPageType
-}
+};
 type MapDispatchToPropsType = {
     addNewMessage: () => void
     updateNewMessageText: (text: string) => void
-}
+};
 
-export type DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType
+export type DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType;
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         dialogsPage: state.dialogsPage
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
-        addNewMessage: () => {dispatch(AddMessageAC())},
-        updateNewMessageText: (text: string) => {dispatch(UpdateMessageTextAC(text))}
-    }
-}
+        addNewMessage: () => {dispatch(AddMessageAC());},
+        updateNewMessageText: (text: string) => {dispatch(UpdateMessageTextAC(text));}
+    };
+};
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
