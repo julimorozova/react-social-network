@@ -11,6 +11,7 @@ type UsersPresentType = {
     onPageChanged: (p: number) => void
     follow: (userID: string) => void
     unfollow: (userID: string) => void
+    isLoading: boolean
 };
 export const Users = (props: UsersPresentType) => {
         const pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
