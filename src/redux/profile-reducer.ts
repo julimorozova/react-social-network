@@ -2,6 +2,7 @@ import {v1} from "uuid";
 
 
 type ProfilePageType = {
+    isLoading: boolean
     newPostText: string
     postsData: Array<PostsDataType>
     profileUser: ProfileUserType
@@ -37,6 +38,7 @@ export type ProfileUserType = {
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SET_PROFILE_USER = "SET_PROFILE_USER"
+const TOGGLE_IS_LOADER = "TOGGLE_IS_LOADER";
 
 type AddPostAT = {
     type: "ADD-POST"
@@ -49,10 +51,14 @@ type SetProfileUserAT = {
     type: 'SET_PROFILE_USER'
     profileUser: ProfileUserType
 }
-
-type ActionType = AddPostAT | UpdateNewPostTextAT | SetProfileUserAT;
+type ToggleIsLoaderAT = {
+    type: "TOGGLE_IS_LOADER"
+    isLoading: boolean
+};
+type ActionType = AddPostAT | UpdateNewPostTextAT | SetProfileUserAT | ToggleIsLoaderAT;
 
 const initialState: ProfilePageType = {
+    isLoading: true,
     newPostText: 'Hi!',
     postsData: [
         {id: "1", message: 'It is my first post', likesCount: 12},
@@ -86,6 +92,8 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
         case(SET_PROFILE_USER): {
             return {...state, profileUser: action.profileUser}
         }
+        case TOGGLE_IS_LOADER:
+            return {...state, isLoading: action.isLoading};
 
         default:
             return state;
@@ -98,3 +106,4 @@ export const UpdatePostTextAC = (newPostText: string): UpdateNewPostTextAT => ({
     newPostText
 });
 export const SetProfileUserAC = (profileUser: ProfileUserType):SetProfileUserAT => ({type: SET_PROFILE_USER, profileUser})
+export const toggleIsLoadingAC = (isLoading: boolean): ToggleIsLoaderAT => ({type: TOGGLE_IS_LOADER, isLoading});
