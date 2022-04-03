@@ -51,7 +51,7 @@ export type UpdateNewMessageTextAT = {
 export type ActionType = UpdateNewPostTextAT | AddPostAT | AddMessageAT | UpdateNewMessageTextAT;
 
 
-const store: StoreType = {
+ const store: StoreType = {
     _state: {
         profilePage: {
             newPostText: 'Hi!',
@@ -86,7 +86,7 @@ const store: StoreType = {
     },
 
     dispatch(action) {
-        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        //this._state.profilePage = profileReducer(this._state.profilePage, action);
         this._state.dialogsPage = dialogReducer(this._state.dialogsPage, action);
         this._callSubscriber();
     }

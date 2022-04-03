@@ -10,10 +10,11 @@ import {
     UserType
 } from "../../redux/users-reducer";
 import {Dispatch} from "redux";
-import loader from './loader.svg';
+
 
 import React from "react";
 import axios from "axios";
+import {Loader} from "../common/Loader/Loader";
 
 export class UsersApiComponent extends React.Component<UsersType, AppStateType> {
     componentDidMount() {
@@ -39,7 +40,7 @@ export class UsersApiComponent extends React.Component<UsersType, AppStateType> 
 
     render() {
         return <div>
-            {this.props.isLoading ? <img style={{marginLeft: 500}} src={loader} alt="logo"/> : null }
+            {this.props.isLoading ? <Loader/> : null }
 
             <Users
                 totalUsersCount={this.props.totalUsersCount}
@@ -70,7 +71,9 @@ export type MapDispatchToPropsType = {
     setTotalUsersCount: (totalUsersCount: number) => void
     toggleIsLoading: (isLoading: boolean) => void
 };
+
 export type UsersType = MapStateToPropsType & MapDispatchToPropsType;
+
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         users: state.usersPage.users,
@@ -103,4 +106,5 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
 
     };
 };
+
 export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApiComponent);

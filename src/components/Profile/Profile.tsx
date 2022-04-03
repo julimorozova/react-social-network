@@ -1,22 +1,28 @@
 import classes from './Profile.module.css';
-import {ActionType, ProfilePageType} from "../../redux/store";
 import React from "react";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
+import {ProfileUserType} from "../../redux/profile-reducer";
+import {Loader} from "../common/Loader/Loader";
 
-type ProfilePagePropsType = {
-    profilePage: ProfilePageType
-    dispatch: (action: ActionType) => void
-};
+type ProfilePresentType = {
+    profileUser: ProfileUserType
+}
 
-export const Profile: React.FC<ProfilePagePropsType> = ({profilePage, dispatch}) => {
+export const Profile: React.FC<ProfilePresentType> = ({profileUser}) => {
+    if(!profileUser) {
+        return <Loader/>
+    }
+
+
     return (
         <div className={classes.profile}>
 
             <img className={classes.img}
-                 src="https://avatars.mds.yandex.net/i?id=e708784c502029fd3580605e76109216_l-5761336-images-thumbs&n=27&h=384&w=480"
+                 src={profileUser.photos.large}
                  alt=""/>
             <h3 className={classes.aboutUser}>
-                User User
+                <div>{profileUser.fullName}</div>
+                <div>{profileUser.aboutMe}</div>
             </h3>
 
             <div className={classes.userFriends}>
