@@ -2,6 +2,7 @@ import React from "react";
 import classes from "../Users/Users.module.css";
 import {UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
+import {follow, unfollow} from "../../api/api";
 
 
 type UsersPresentType = {
@@ -43,9 +44,25 @@ export const Users = (props: UsersPresentType) => {
                             <div className={classes.name}>{u.name}</div>
                             <div>{u.status}</div>
                             <div>
-                                {u.followed
-                                    ? <button onClick={() => props.unfollow(u.id)}>Unfollow</button>
-                                    : <button onClick={() => props.follow(u.id)}>Follow</button>}
+                                { u.followed
+                                    ? <button onClick={() =>{
+                                        unfollow(u.id).then(response => {
+                                            if (response.data.resultCode === 0) {
+                                                props.unfollow(u.id)}
+
+                                        }
+                                        )
+                                    }
+                                    }>Unfollow</button>
+                                    : <button onClick={() => {
+                                        follow(u.id).then(response => {
+                                                if (response.data.resultCode === 0) {
+                                                    props.follow(u.id)
+                                                }
+                                            }
+                                        )
+                                    }
+                                    }>Follow</button>}
                             </div>
 
                         </div>)

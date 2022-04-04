@@ -15,32 +15,31 @@ import {Dispatch} from "redux";
 import React from "react";
 import axios from "axios";
 import {Loader} from "../common/Loader/Loader";
+import {getUsers} from "../../api/api";
 
 export class UsersApiComponent extends React.Component<UsersType, AppStateType> {
     componentDidMount() {
         this.props.toggleIsLoading(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-            .then(response => {
-                this.props.toggleIsLoading(false);
-                this.props.setUsers(response.data.items);
-                this.props.setTotalUsersCount(response.data.totalCount);
-            });
+        getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+            this.props.toggleIsLoading(false);
+            this.props.setUsers(data.items);
+            this.props.setTotalUsersCount(data.totalCount);
+        });
     }
 
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber);
         this.props.toggleIsLoading(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-            .then(response => {
 
-                this.props.setUsers(response.data.items);
-                this.props.toggleIsLoading(false);
-            });
+        getUsers(pageNumber, this.props.pageSize).then(data => {
+            this.props.setUsers(data.items);
+            this.props.toggleIsLoading(false);
+        });
     };
 
     render() {
         return <div>
-            {this.props.isLoading ? <Loader/> : null }
+            {this.props.isLoading ? <Loader/> : null}
 
             <Users
                 totalUsersCount={this.props.totalUsersCount}
